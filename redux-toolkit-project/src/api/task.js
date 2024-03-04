@@ -73,7 +73,7 @@ export const addTask = async (newTask) => {
 };
 
 export const toggleStatusTask = async (task) => {
-    const updatedTask = { ...task, completed: !task.completed };
+    const updatedTask = { ...task, completed: !task.completed, id: task.id.toString() };
     try {
         const response = await axios.put(`${API_URL}/${task.id}`, updatedTask);
         return response.data;
@@ -84,8 +84,6 @@ export const toggleStatusTask = async (task) => {
 
 export const removeTask = async (taskId) => {
     try {
-        console.log(taskId)
-        console.log(API_URL,'/',taskId);
         const response = await axios.delete(`${API_URL}/${taskId}`);
         return response.data;
     } catch (error) {
@@ -96,7 +94,6 @@ export const removeTask = async (taskId) => {
 export const getAllTasks = async () => {
     try {
         const response = await axios.get(API_URL);
-        console.log('response', response.data);
         return response.data;
     } catch (error) {
         throw new Error(error.message);

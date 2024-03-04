@@ -26,7 +26,7 @@ const TaskList = () => {
         if (newTask.title.trim() != '') {
             await dispatch(
                 addTaskThunk({
-                    id: Math.floor(Math.random() * 1000),
+                    id: Math.floor(Math.random() * 1000).toString(),
                     title: newTask.title,
                     description: newTask.description,
                     completed: false,
