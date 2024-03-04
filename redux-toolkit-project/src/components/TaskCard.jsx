@@ -30,7 +30,7 @@ const TaskCard = ({ task }) => {
 
     const handleRemoveTask = async () => {
         if (!loading){
-            dispatch(removeTaskThunk(task));
+            dispatch(removeTaskThunk(task.id));
         }
     }
     

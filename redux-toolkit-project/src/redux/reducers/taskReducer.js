@@ -14,9 +14,11 @@ export const addTaskThunk = createAsyncThunk(
 
 export const toggleStatusTaskThunk = createAsyncThunk(
     "tasks/toggleStatusTask",
-    async (task) => {
+    async (task, {dispatch}) => {
         try {
-            return await TASK_API.toggleStatusTask(task);
+            const response = await TASK_API.toggleStatusTask(task);
+            dispatch(getAllTasksThunk());
+            return response.data;
         } catch (error) {
             throw new Error(error.message);
         }
@@ -25,16 +27,17 @@ export const toggleStatusTaskThunk = createAsyncThunk(
 
 export const removeTaskThunk = createAsyncThunk(
     "tasks/removeTask",
-    async (task) => {
-        console.log('task', task);
-        console.log('task.id', task.id);
+    async (taskId, { dispatch }) => { // Agrega { dispatch } al segundo argumento: ARREGLA EL PROBLEMA DE QUE NO SE MUESTRA EN LA UI EL CAMBIO
         try {
-            return await TASK_API.removeTask(task.id);
+            const response = await TASK_API.removeTask(taskId);
+            dispatch(getAllTasksThunk()); // Despachar la acción para obtener todas las tareas actualizadas
+            return response.data;
         } catch (error) {
             throw new Error(error.message);
         }
     }
 );
+
 
 export const getAllTasksThunk = createAsyncThunk(
     "tasks/getAllTasks", 
@@ -43,6 +46,7 @@ export const getAllTasksThunk = createAsyncThunk(
             const tasks = await TASK_API.getAllTasks();
             // Convertir las identificaciones de cadena a números
             const tasksWithNumericIds = tasks.map(task => ({...task, id: parseInt(task.id)}));
+            console.log('tasksWithNumericIds', tasksWithNumericIds);
             return tasksWithNumericIds;
         } catch (error) {
             throw new Error(error.message);
@@ -127,6 +131,13 @@ const taskSlice = createSlice({
                 (state) => {
                     state.loading = true;
                     state.error = null;
+                }
+            )
+            .addMatcher(
+                (action) => action.type.endsWith("/rejected"),
+                (state, action) => {
+                    state.loading = false;
+                    state.error = action.error.message;
                 }
             );
     }
