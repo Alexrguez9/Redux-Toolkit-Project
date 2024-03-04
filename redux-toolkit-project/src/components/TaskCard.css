@@ -1,0 +1,42 @@
+/* TaskCard.css */
+
+.task-card {
+    border: 1px solid #ddd;
+    padding: 16px;
+    margin: 8px;
+    background-color: #fff; /* Default background color */
+    color: #333; /* Default text color */
+  }
+  
+  .completed-task {
+    background-color: #d4edda; /* Light green for completed tasks */
+    color: #155724; /* Dark green text for completed tasks */
+  }
+  
+  .uncompleted-task {
+    background-color: #fff; /* White background for uncompleted tasks */
+    color: #333; /* Default text color for uncompleted tasks */
+  }
+  
+  .task-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+  
+  .task-actions button {
+    border: none;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .task-actions button:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .task-actions button:disabled {
+    cursor: not-allowed;
+    background-color: #e0e0e0;
+  }
+  

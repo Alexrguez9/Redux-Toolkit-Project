@@ -1,0 +1,34 @@
+{
+  "tasks": [
+    {
+      "id": "0",
+      "title": "Hacer la compra",
+      "description": "Comprar frutas, verduras y carne para la semana.",
+      "completed": false
+    },
+    {
+      "id": "1",
+      "title": "Hacer ejercicio",
+      "description": "Hacer 30 minutos de ejercicio en casa.",
+      "completed": true
+    },
+    {
+      "id": "2",
+      "title": "Leer un libro",
+      "description": "Terminar el último capítulo del libro de desarrollo personal.",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "title": "INTEGER",
+      "description": "Primera vez que hago run del server, elimina esta tarea con INTEGER, pero luego al refrescar da error en eliminar otro INTEGER",
+      "completed": false
+    },
+    {
+      "id": 4,
+      "title": "INTEGER",
+      "description": "Prueba integer 2",
+      "completed": false
+    }
+  ]
+}
